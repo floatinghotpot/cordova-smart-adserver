@@ -111,6 +111,14 @@ showInterstitial();
 setOptions(options, success, fail);
 ```
 
+## Screenshots ##
+
+Banner Bottom | Banner Top
+-------|----------
+![ScreenShot](docs/banner_bottom.jpg) | ![ScreenShot](docs/banner_top.jpg)
+Banner Toast | Interstitial
+![ScreenShot](docs/banner_toast.jpg) | ![ScreenShot](docs/interstitial.jpg)
+
 ## Credits ##
 
 This Cordova plugin is developed by Raymond Xie for Groupe Express-Roularta.

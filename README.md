@@ -29,14 +29,18 @@ Step 2: Want a banner? single line of javascript code.
 if(SmartAdServer) SmartAdServer.createBanner( {
 	adId: ad_units.banner, 
 	position: SmartAdServer.AD_POSITION.TOP_CENTER, 
-	autoShow: true } );
+	autoShow: true 
+} );
 ```
 
 Step 3: Want full screen Ad? Easy. 
 
 ```javascript
 // load and display full screen Ad
-if(SmartAdServer) SmartAdServer.prepareInterstitial( {adId:ad_units.interstitial, autoShow:true} );
+if(SmartAdServer) SmartAdServer.prepareInterstitial( {
+	adId: ad_units.interstitial, 
+	autoShow: true
+} );
 ```
 
 ### Features ###

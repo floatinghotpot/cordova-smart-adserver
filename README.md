@@ -127,7 +127,7 @@ Banner Toast | Interstitial
 
 This Cordova plugin is developed by Raymond Xie for Groupe Express-Roularta.
 
-[Groupe Express-Roularta](http://www.groupe-exp.com/) is the sponsor of this project, and agrees to publish as open source to benefit the community.
+[Groupe Express-Roularta](http://www.expressroulartaservices.fr/groupe/presentation-du-groupe/) is the sponsor of this project, and agrees to publish as open source to benefit the community.
 
 ## See Also ##
 

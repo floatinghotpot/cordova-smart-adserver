@@ -114,13 +114,13 @@ public class SmartAdServerPlugin extends GenericAdPlugin {
 		if (adSize != null) {
 			adWidth = adSize.getWidth();
 			adHeight = adSize.getHeight();
-
-			if (adWidth < 0) {
-				adWidth = (int) (getView().getWidth() / screenDensity);
-			}
-			if (adHeight < 0) {
-				adHeight = (adWidth > 360) ? 90 : 50;
-			}
+		}
+		
+		if (adWidth < 0) {
+			adWidth = (int) (getView().getWidth() / screenDensity);
+		}
+		if (adHeight < 0) {
+			adHeight = (adWidth > 360) ? 90 : 50;
 		}
 		
 		ad.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, adHeight));

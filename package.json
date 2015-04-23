@@ -1,0 +1,31 @@
+{
+  "name": "cordova-plugin-smartadserver",
+  "version": "1.0.2",
+  "description": "Cordova plugin for Smart Ad Server to monetize hybrid apps",
+  "cordova": {
+    "id": "cordova-plugin-smartadserver",
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/floatinghotpot/cordova-smart-adserver.git"
+  },
+  "bugs": {
+    "url": "https://github.com/floatinghotpot/cordova-smart-adserver/issues"
+  },
+  "keywords": [
+    "cordova",
+    "ecosystem:cordova",
+    "ad",
+    "smart",
+    "adserver",
+    "rjfun"
+  ],
+  "author": {
+    "name": "Raymond Xie",
+    "email": "rjfun.mobile@gmail.com"
+  },
+  "license": "MIT"
+}

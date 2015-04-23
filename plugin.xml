@@ -2,11 +2,11 @@
 
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	id="com.rjfun.cordova.smartadserver"
+	id="cordova-plugin-smartadserver"
 	version="0.9.2">
       
     <name>Smart Ad Server</name>
-	<description>Cordova/PhoneGap Plugin for Smart Ad Server</description>
+	<description>Cordova plugin for Smart Ad Server to monetize hybrid apps</description>
 	<author>Liming Xie</author>
 	<license>MIT</license>
 	<keywords>rjfun,ad,smart</keywords>
@@ -21,11 +21,11 @@
         <clobbers target="window.SmartAdServer" />
     </js-module>
 
-	<dependency id="com.rjfun.cordova.extension" />
+	<dependency id="cordova-plugin-extension" />
 	
     <!-- android -->
     <platform name="android">
-        <dependency id="com.google.playservices" url="https://github.com/floatinghotpot/google-play-services" commit="r19" />
+        <dependency id="cordova-plugin-googleplayservices" />
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
 			<activity android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" 
 			    android:name="com.google.android.gms.ads.AdActivity"

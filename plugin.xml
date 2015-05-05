@@ -3,7 +3,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	id="com.rjfun.cordova.smartadserver"
-	version="0.9.2">
+	version="1.0.0">
       
     <name>Smart Ad Server</name>
 	<description>Cordova/PhoneGap Plugin for Smart Ad Server</description>
@@ -36,7 +36,7 @@
 			<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 			<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
           </config-file>
-          
+
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="SmartAdServer">
                 <param name="android-package" value="com.rjfun.cordova.smartadserver.SmartAdServerPlugin"/>
@@ -44,7 +44,46 @@
             </feature>
         </config-file>
         <source-file src="src/android/SmartAdServerPlugin.java" target-dir="src/com/rjfun/cordova/smartadserver" />
-        <source-file src="src/android/SmartAdServer-Android-SDK-5.0.3.jar" target-dir="libs" />
+        <source-file src="src/android/SmartAdServer-Android-SDK-5.0.4.jar" target-dir="libs" />
      </platform>
-     
+
+    <!-- ios -->
+    <platform name="ios">
+         <config-file target="config.xml" parent="/*">
+             <feature name="SmartAdServer">
+                 <param name="ios-package" value="SmartAdServerPlugin" />
+             </feature>
+         </config-file>
+
+         <config-file target="*-Info.plist" parent="CFBundleAllowMixedLocalizations">
+            <true/>
+         </config-file>
+
+        <header-file src="src/ios/SmartAdServerPlugin.h"/>
+         <source-file src="src/ios/SmartAdServerPlugin.m"/>
+
+         <header-file src="src/ios/headers/SASAd.h"/>
+         <header-file src="src/ios/headers/SASAdView.h"/>
+         <header-file src="src/ios/headers/SASAdViewDelegate.h"/>
+         <header-file src="src/ios/headers/SASBannerView.h"/>
+         <header-file src="src/ios/headers/SASInterstitialView.h"/>
+         <header-file src="src/ios/headers/SASMediationAd.h"/>
+         <header-file src="src/ios/headers/SmartAdServerAd.h"/>
+
+         <source-file src="src/ios/libSmartAdServer.a" framework="true"/>
+         <resource-file src="src/ios/sas.bundle"/>
+
+        <framework src="AdSupport.framework" weak="true"/>
+        <framework src="CoreGraphics.framework"/>
+        <framework src="CoreLocation.framework"/>
+        <framework src="CoreMotion.framework" weak="true"/>
+        <framework src="EventKit.framework"/>
+        <framework src="EventKitUI.framework"/>
+        <framework src="Foundation.framework"/>
+        <framework src="MediaPlayer.framework"/>
+        <framework src="QuartzCore.framework"/>
+        <framework src="StoreKit.framework"/>
+        <framework src="SystemConfiguration.framework"/>
+        <framework src="UIKit.framework"/>
+    </platform>
 </plugin>

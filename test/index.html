@@ -50,11 +50,12 @@ button {
 			interstitial: '35176/(news_activity)/12167'
 		};
 	} else if(/(ipod|iphone|ipad)/i.test(navigator.userAgent)) {
-		alert('iOS not implemented');
-		return;
+		ad_units = { // for iOS
+			banner: '35176/(news_activity)/15140',
+			interstitial: '35176/(news_activity)/12167'
+		};
 	} else {
 		alert('Windows phone not supported');
-		return;
 	}
         
     function initApp() {

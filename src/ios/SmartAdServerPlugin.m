@@ -19,9 +19,20 @@
 #define TEST_BANNER_ID           @"35176/(news_activity)/15140"
 #define TEST_INTERSTITIALID      @"35176/(news_activity)/12167"
 
+#define BANNER_AD_WIDTH         320
+#define BANNER_AD_HEIGHT        50
+
 @interface SmartAdServerPlugin()<SASAdViewDelegate>
 
 - (NSString *) __getAdMobDeviceId;
+
+@property (assign) int mBannerSiteId;
+@property (nonatomic, retain) NSString* mBannerPageId;
+@property (assign) int mBannerFormatId;
+
+@property (assign) int mInterstitialSiteId;
+@property (nonatomic, retain) NSString* mInterstitialPageId;
+@property (assign) int mInterstitialFormatId;
 
 @end
 
@@ -31,6 +42,9 @@
 {
     [super pluginInitialize];
 
+    self.adWidth = BANNER_AD_WIDTH;
+    self.adHeight = BANNER_AD_HEIGHT;
+    
     self.testTraffic = FALSE;
 }
 
@@ -52,14 +66,23 @@
 
 - (UIView*) __createAdView:(NSString*)adId {
     
+    NSArray* fields = [adId componentsSeparatedByString:@"/"];
+    if([fields count] >= 3) {
+        self.mBannerSiteId = [[fields objectAtIndex:0] intValue];
+        self.mBannerPageId = [fields objectAtIndex:1];
+        self.mBannerFormatId = [[fields objectAtIndex:2] intValue];
+    }
+    
     UIView * parentView = [self getView];
     CGRect rect = CGRectMake(0, 0, parentView.frame.size.width, kBannerHeight);
     SASBannerView *ad = [[SASBannerView alloc] initWithFrame:rect
-                                                             loader:SASLoaderActivityIndicatorStyleWhite];
+                                                      loader:SASLoaderActivityIndicatorStyleWhite];
 
     ad.expandsFromTop = YES;
     ad.modalParentViewController = [self getViewController];
     ad.delegate = self;
+    
+    [self __loadAdView:ad];
     
     return ad;
 }
@@ -93,7 +116,10 @@
     if(! view) return;
     
     SASBannerView* ad = (SASBannerView*) view;
-    [ad loadFormatId:kBannerFormatID pageId:kPageID master:NO target:nil];
+    [ad loadFormatId:self.mBannerFormatId
+              pageId:self.mBannerPageId
+              master:NO
+              target:nil];
 }
 
 - (void) __pauseAdView:(UIView*)view {
@@ -113,8 +139,16 @@
 }
 
 - (NSObject*) __createInterstitial:(NSString*)adId {
+    NSArray* fields = [adId componentsSeparatedByString:@"/"];
+    if([fields count] >= 3) {
+        self.mInterstitialSiteId = [[fields objectAtIndex:0] intValue];
+        self.mInterstitialPageId = [fields objectAtIndex:1];
+        self.mInterstitialFormatId = [[fields objectAtIndex:2] intValue];
+    }
+    
     UIView * parentView = [self getView];
-    SASInterstitialView *ad = [[SASInterstitialView alloc] initWithFrame:parentView.bounds loader:SASLoaderNone];
+    SASInterstitialView *ad = [[SASInterstitialView alloc] initWithFrame:parentView.bounds
+                                                                  loader:SASLoaderNone];
     ad.delegate = self;
     ad.modalParentViewController = [self getViewController];
     return ad;
@@ -123,7 +157,11 @@
 - (void) __loadInterstitial:(NSObject*)interstitial {
     SASInterstitialView* ad = (SASInterstitialView*) interstitial;
     if(ad) {
-        [ad loadFormatId:kInterstitialFormatID pageId:kPageID master:YES target:nil timeout:5];
+        [ad loadFormatId:self.mInterstitialFormatId
+                  pageId:self.mInterstitialPageId
+                  master:YES
+                  target:nil
+                 timeout:5];
     }
 }
 
@@ -156,6 +194,7 @@
 - (void)adViewDidLoad:(SASAdView *)adView {
     
     // TODO: we need tell whether it's banner or interstitial Ad
+    NSLog(@"adViewDidLoad");
     
     if((! self.bannerVisible) && self.autoShowBanner) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -169,6 +208,7 @@
 - (void)adViewDidFailToLoad:(SASAdView *)adView error:(NSError *)error {
     
     // TODO: we need tell whether it's banner or interstitial Ad
+    NSLog(@"%d - %@", (int)error.code, [error localizedDescription]);
     
     [self fireAdErrorEvent:EVENT_AD_FAILLOAD withCode:(int)error.code withMsg:[error localizedDescription] withType:ADTYPE_BANNER];
 }

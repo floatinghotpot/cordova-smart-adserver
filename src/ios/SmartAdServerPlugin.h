@@ -14,8 +14,6 @@
 - (void) parseOptions:(NSDictionary *)options;
 
 - (NSString*) __getProductShortName;
-- (NSString*) __getDefaultBannerId;
-- (NSString*) __getDefaultInterstitialId;
 
 - (UIView*) __createAdView:(NSString*)adId;
 - (int) __getAdViewWidth:(UIView*)view;

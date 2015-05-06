@@ -4,21 +4,33 @@ Cordova/PhoneGap Plugin for [Smart Ad Server](http://smartadserver.com/).
 
 ### Show Mobile Ad with single line of javascript code ###
 
-Step 1: Prepare Ad Unit Id, in [Smart Ad Server portal](http://manage.smartadserver.com/), then write it in your javascript code.
+Step 1: Prepare SiteId, PageId, FormatId, and baseUrl, in [Smart Ad Server portal](http://manage.smartadserver.com/), then write it in your javascript code.
 
 ```javascript
+    var defaultOptions = {
+            siteId: 35176,
+            baseUrl: 'http://www.test.com',
+            position: SmartAdServer.AD_POSITION.BOTTOM_CENTER,
+            // offsetTopBar: false, // avoid overlapped by status bar, for iOS7+
+            bgColor: 'black', // color name, or '#RRGGBB'
+            isTesting: true, // set to true, to receiving test ad for testing purpose
+            // autoShow: true // auto show interstitial ad when loaded, set to false if prepare/show
+        };
+    SmartAdServer.setOptions( defaultOptions );
+
 	var ad_units = {};
 	if( /(android)/i.test(navigator.userAgent) ) { 
-		ad_units = { // for Android, in pattern "siteId/pageId/formatId"
-			banner: '35176/(news_activity)/15140',
-			interstitial: '35176/(news_activity)/12167'
+		ad_units = { // for Android
+			banner: '(news_activity)/15140',         // in pattern: '{pageId}/{formatId}'
+			interstitial: '(news_activity)/12167'
 		};
 	} else if(/(ipod|iphone|ipad)/i.test(navigator.userAgent)) {
-		alert('iOS not implemented');
-		return;
+		ad_units = { // for iOS
+			banner: '(news_activity)/15140',
+			interstitial: '(news_activity)/12167'
+		};
 	} else {
 		alert('Windows phone not supported');
-		return;
 	}
 ```
 
@@ -47,7 +59,7 @@ if(SmartAdServer) SmartAdServer.prepareInterstitial( {
 
 Platforms supported:
 - [x] Android
-- [ ] iOS (not implemented yet)
+- [x] iOS
 
 Highlights:
 - [x] Easy-to-use: Display Ad with single line of javascript code.
@@ -125,9 +137,11 @@ Banner Toast | Interstitial
 
 ## Credits ##
 
-This Cordova plugin is developed by Raymond Xie for Groupe Express-Roularta.
+This Cordova plugin is developed by Raymond Xie for Groupe Express-Roularta and Chunk Group.
 
-[Groupe Express-Roularta](http://www.lexpress.fr/) is the sponsor of this project, and agrees to publish as open source to benefit the community.
+[Groupe Express-Roularta](http://www.lexpress.fr/) is the sponsor of Android code of this project, and agrees to publish as open source to benefit the community.
+
+[Chunk](http://www.chunkgroup.com/) is the sponsor of iOS code of this project, and agrees to publish as open source to benefit the community.
 
 ## See Also ##
 

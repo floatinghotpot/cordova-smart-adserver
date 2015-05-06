@@ -71,12 +71,12 @@ Highlights:
 
 * If use with Cordova CLI:
 ```bash
-cordova plugin add com.rjfun.cordova.smartadserver
+cordova plugin add com.chunk.cordova.smartadserver
 ```
 
 * If use with PhoneGap Buid, just configure in config.xml:
 ```javascript
-<gap:plugin name="com.rjfun.cordova.smartadserver" source="plugins.cordova.io"/>
+<gap:plugin name="com.chunk.cordova.smartadserver" source="plugins.cordova.io"/>
 ```
 
 * If use with Intel XDK:
@@ -84,23 +84,23 @@ Project -> CORDOVA 3.X HYBRID MOBILE APP SETTINGS -> PLUGINS AND PERMISSIONS -> 
 Add a Third-Party Plugin -> Get Plugin from the Web, input:
 ```
 Name: AdMobPluginPro
-Plugin ID: com.rjfun.cordova.smartadserver
+Plugin ID: com.chunk.cordova.smartadserver
 [x] Plugin is located in the Apache Cordova Plugins Registry
 ```
 
 ## Quick start with cordova CLI ##
 ```bash
 	# create a demo project
-    cordova create test1 com.rjfun.test1 Test1
+    cordova create test1 com.chunk.test1 Test1
     cd test1
     cordova platform add android
 
     # now add the plugin, cordova CLI will handle dependency automatically
-    cordova plugin add com.rjfun.cordova.smartadserver
+    cordova plugin add com.chunk.cordova.smartadserver
 
     # now remove the default www content, copy the demo html file to www
     rm -r www/*;
-    cp plugins/com.rjfun.cordova.smartadserver/test/* www/;
+    cp plugins/com.chunk.cordova.smartadserver/test/* www/;
 
 	# now build and run the demo in your device or emulator
     cordova prepare; 

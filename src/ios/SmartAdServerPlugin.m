@@ -11,10 +11,10 @@
 #import "SASBannerView.h"
 #import "SASInterstitialView.h"
 
-#define TEST_SITE_ID            35176
-#define TEST_BASE_URL           @""
-#define TEST_BANNER_ID           @"(news_activity)/15140"
-#define TEST_INTERSTITIALID      @"(news_activity)/12167"
+#define TEST_SITE_ID            73569
+#define TEST_BASE_URL           @"http://mobile.smartadserver.com"
+#define TEST_BANNER_ID           @"549527/15140"
+#define TEST_INTERSTITIALID      @"549527/12145"
 
 #define BANNER_AD_WIDTH         320
 #define BANNER_AD_HEIGHT        50
@@ -166,7 +166,7 @@
                   pageId:self.mInterstitialPageId
                   master:YES
                   target:nil
-                 timeout:5];
+                 timeout:10 ];
     }
 }
 
@@ -202,7 +202,7 @@
     
     NSLog(@"adViewDidLoad");
 
-    if([adView isKindOfClass:@"SASBannerView"]) {
+    if([adView isKindOfClass:[SASBannerView class]]) {
         if((! self.bannerVisible) && self.autoShowBanner) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self __showBanner:self.adPosition atX:self.posX atY:self.posY];
@@ -210,7 +210,7 @@
         }
         [self fireAdEvent:EVENT_AD_LOADED withType:ADTYPE_BANNER];
 
-    } else if([adView isKindOfClass:@"SASInterstitialView"]) {
+    } else if([adView isKindOfClass:[SASInterstitialView class]]) {
         if (self.interstitial && self.autoShowInterstitial) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self __showInterstitial:self.interstitial];
@@ -226,11 +226,11 @@
 - (void)adViewDidFailToLoad:(SASAdView *)adView error:(NSError *)error {
     
     NSLog(@"%d - %@", (int)error.code, [error localizedDescription]);
-    
-    if([adView isKindOfClass:@"SASBannerView"]) {
+
+    if([adView isKindOfClass:[SASBannerView class]]) {
         [self fireAdErrorEvent:EVENT_AD_FAILLOAD withCode:(int)error.code withMsg:[error localizedDescription] withType:ADTYPE_BANNER];
 
-    } else if([adView isKindOfClass:@"SASInterstitialView"]) {
+    } else if([adView isKindOfClass:[SASInterstitialView class]]) {
         [self fireAdErrorEvent:EVENT_AD_FAILLOAD withCode:(int)error.code withMsg:[error localizedDescription] withType:ADTYPE_INTERSTITIAL];
 
     }

@@ -20,10 +20,10 @@ public class SmartAdServerPlugin extends GenericAdPlugin {
 
     private static final String LOGTAG = "SmartAdServer";
     
-    private static final int TEST_SITE_ID = 35176;
-    private static final String TEST_BASE_URL = "";
-    private static final String TEST_BANNER_ID = "(news_activity)/15140";
-    private static final String TEST_INTERSTITIAL_ID = "(news_activity)/12167";
+    private static final int TEST_SITE_ID = 73569;
+    private static final String TEST_BASE_URL = "http://mobile.smartadserver.com";
+    private static final String TEST_BANNER_ID = "549527/15140";
+    private static final String TEST_INTERSTITIAL_ID = "549527/12145";
 
 	//Constants for phone sized ads (320x50)
 	private static final int BANNER_AD_WIDTH = 320;
@@ -48,7 +48,7 @@ public class SmartAdServerPlugin extends GenericAdPlugin {
     	super.pluginInitialize();
     	
     	SASUtil.enableLogging();
-    	
+
         siteId = TEST_SITE_ID;
         baseUrl = TEST_BASE_URL;
 

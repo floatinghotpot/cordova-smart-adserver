@@ -8,26 +8,28 @@ Step 1: Prepare SiteId, PageId, FormatId, and baseUrl, in [Smart Ad Server porta
 
 ```javascript
     var defaultOptions = {
-            siteId: 35176,
-            baseUrl: 'http://www.test.com',
-            position: SmartAdServer.AD_POSITION.BOTTOM_CENTER,
-            // offsetTopBar: false, // avoid overlapped by status bar, for iOS7+
-            bgColor: 'black', // color name, or '#RRGGBB'
-            isTesting: true, // set to true, to receiving test ad for testing purpose
-            // autoShow: true // auto show interstitial ad when loaded, set to false if prepare/show
-        };
+        siteId: ad_units.siteId,
+        baseUrl: 'http://mobile.smartadserver.com',
+        position: SmartAdServer.AD_POSITION.BOTTOM_CENTER,
+        // offsetTopBar: false, // avoid overlapped by status bar, for iOS7+
+        bgColor: 'black', // color name, or '#RRGGBB'
+        isTesting: true, // set to true, to receiving test ad for testing purpose
+        // autoShow: true // auto show interstitial ad when loaded, set to false if prepare/show
+    };
     SmartAdServer.setOptions( defaultOptions );
 
 	var ad_units = {};
 	if( /(android)/i.test(navigator.userAgent) ) { 
 		ad_units = { // for Android
-			banner: '(news_activity)/15140',         // in pattern: '{pageId}/{formatId}'
-			interstitial: '(news_activity)/12167'
+            siteId: 73569,
+			banner: '549527/15140',  // in pattern: '{pageId}/{formatId}'
+			interstitial: '549527/12145'
 		};
 	} else if(/(ipod|iphone|ipad)/i.test(navigator.userAgent)) {
 		ad_units = { // for iOS
-			banner: '(news_activity)/15140',
-			interstitial: '(news_activity)/12167'
+            siteId: 73568,
+			banner: '549526/15140',
+			interstitial: '549526/12145'
 		};
 	} else {
 		alert('Windows phone not supported');

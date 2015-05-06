@@ -7,17 +7,6 @@ Cordova/PhoneGap Plugin for [Smart Ad Server](http://smartadserver.com/).
 Step 1: Prepare SiteId, PageId, FormatId, and baseUrl, in [Smart Ad Server portal](http://manage.smartadserver.com/), then write it in your javascript code.
 
 ```javascript
-    var defaultOptions = {
-        siteId: ad_units.siteId,
-        baseUrl: 'http://mobile.smartadserver.com',
-        position: SmartAdServer.AD_POSITION.BOTTOM_CENTER,
-        // offsetTopBar: false, // avoid overlapped by status bar, for iOS7+
-        bgColor: 'black', // color name, or '#RRGGBB'
-        isTesting: true, // set to true, to receiving test ad for testing purpose
-        // autoShow: true // auto show interstitial ad when loaded, set to false if prepare/show
-    };
-    SmartAdServer.setOptions( defaultOptions );
-
 	var ad_units = {};
 	if( /(android)/i.test(navigator.userAgent) ) { 
 		ad_units = { // for Android
@@ -34,6 +23,17 @@ Step 1: Prepare SiteId, PageId, FormatId, and baseUrl, in [Smart Ad Server porta
 	} else {
 		alert('Windows phone not supported');
 	}
+    var defaultOptions = {
+        siteId: ad_units.siteId,
+        baseUrl: 'http://mobile.smartadserver.com',
+        position: SmartAdServer.AD_POSITION.BOTTOM_CENTER,
+        // offsetTopBar: false, // avoid overlapped by status bar, for iOS7+
+        bgColor: 'black', // color name, or '#RRGGBB'
+        isTesting: true, // set to true, to receiving test ad for testing purpose
+        // autoShow: true // auto show interstitial ad when loaded, set to false if prepare/show
+    };
+    SmartAdServer.setOptions( defaultOptions );
+
 ```
 
 Step 2: Want a banner? single line of javascript code.

@@ -20,20 +20,26 @@ public class SmartAdServerPlugin extends GenericAdPlugin {
 
     private static final String LOGTAG = "SmartAdServer";
     
-    private static final String TEST_BANNER_ID = "35176/(news_activity)/15140";
-    private static final String TEST_INTERSTITIAL_ID = "35176/(news_activity)/12167";
+    private static final int TEST_SITE_ID = 35176;
+    private static final String TEST_BASE_URL = "";
+    private static final String TEST_BANNER_ID = "(news_activity)/15140";
+    private static final String TEST_INTERSTITIAL_ID = "(news_activity)/12167";
 
 	//Constants for phone sized ads (320x50)
 	private static final int BANNER_AD_WIDTH = 320;
 	private static final int BANNER_AD_HEIGHT = 50;
-	
-    private float screenDensity = 1.0f;
     
-    private int mBannerSiteId;
+    private static final String OPT_SITE_ID = "siteId";
+    private static final String OPT_BASE_URL = "baseUrl";
+
+    private float screenDensity = 1.0f;
+
+    private int siteId;
+    private String baseUrl;
+
     private String mBannerPageId;
     private int mBannerFormatId;
 
-    private int mInterstitialSiteId;
     private String mInterstitialPageId;
     private int mInterstitialFormatId;
 
@@ -43,13 +49,16 @@ public class SmartAdServerPlugin extends GenericAdPlugin {
     	
     	SASUtil.enableLogging();
     	
+        siteId = TEST_SITE_ID;
+        baseUrl = TEST_BASE_URL;
+
     	adWidth = BANNER_AD_WIDTH;
     	adHeight = BANNER_AD_HEIGHT;
-    	
+
     	DisplayMetrics metrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
         screenDensity = metrics.density;
-        
+
         testTraffic = false;
 	}
     
@@ -98,15 +107,21 @@ public class SmartAdServerPlugin extends GenericAdPlugin {
     	if(this.adSize == null) {
     		this.adSize = new AdSize(this.adWidth, this.adHeight);
     	}
+
+        if(options.has( OPT_SITE_ID )) this.siteId = options.optInt( OPT_SITE_ID );
+
+        if(options.has(OPT_BASE_URL)) {
+            this.baseUrl = options.optString( OPT_BASE_URL );
+            SASAdView.setBaseUrl( this.baseUrl );
+        }
 	}
 	
 	@Override
 	protected View __createAdView(String adId) {
 		String[] items = adId.split("/");
-		if(items.length >= 3) {
-			mBannerSiteId = Integer.parseInt(items[0]);
-			mBannerPageId = items[1];
-			mBannerFormatId = Integer.parseInt(items[2]);
+		if(items.length >= 2) {
+			mBannerPageId = items[0];
+			mBannerFormatId = Integer.parseInt(items[1]);
 		}
 		
 		final SASBannerView ad = new SASBannerView(this.getActivity());
@@ -168,7 +183,7 @@ public class SmartAdServerPlugin extends GenericAdPlugin {
 			final SASBannerView ad = (SASBannerView)view;
 			
 			// instantiate the response handler used when loading an ad on the banner
-			ad.loadAd(mBannerSiteId, mBannerPageId, mBannerFormatId, true, "", new SASAdView.AdResponseHandler() {
+			ad.loadAd(siteId, mBannerPageId, mBannerFormatId, true, "", new SASAdView.AdResponseHandler() {
 
 				@Override
 				public void adLoadingCompleted(SASAdElement arg0) {
@@ -227,10 +242,9 @@ public class SmartAdServerPlugin extends GenericAdPlugin {
 	@Override
 	protected Object __createInterstitial(String adId) {
 		String[] items = adId.split("/");
-		if(items.length >= 3) {
-			mInterstitialSiteId = Integer.parseInt(items[0]);
-			mInterstitialPageId = items[1];
-			mInterstitialFormatId = Integer.parseInt(items[2]);
+		if(items.length >= 2) {
+			mInterstitialPageId = items[0];
+			mInterstitialFormatId = Integer.parseInt(items[1]);
 		}
 
 		final SASInterstitialView ad = new SASInterstitialView(this.getActivity());
@@ -268,7 +282,7 @@ public class SmartAdServerPlugin extends GenericAdPlugin {
 			final SASInterstitialView ad = (SASInterstitialView)interstitial;
 			
 			// instantiate the response handler used when loading an ad on the banner
-			ad.loadAd(mInterstitialSiteId, mInterstitialPageId, mInterstitialFormatId, true, "", new SASAdView.AdResponseHandler() {
+			ad.loadAd(siteId, mInterstitialPageId, mInterstitialFormatId, true, "", new SASAdView.AdResponseHandler() {
 
 				@Override
 				public void adLoadingCompleted(SASAdElement arg0) {

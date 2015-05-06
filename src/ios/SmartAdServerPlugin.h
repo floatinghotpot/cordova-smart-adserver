@@ -7,6 +7,9 @@
 
 #import "GenericAdPlugin.h"
 
+#define OPT_SITE_ID     @"siteId"
+#define OPT_BASE_URL    @"baseURL"
+
 @interface SmartAdServerPlugin : GenericAdPlugin
 
 - (void)pluginInitialize;

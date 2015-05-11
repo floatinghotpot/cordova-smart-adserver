@@ -165,8 +165,7 @@
         [ad loadFormatId:self.mInterstitialFormatId
                   pageId:self.mInterstitialPageId
                   master:YES
-                  target:nil
-                 timeout:10 ];
+                  target:nil];
     }
 }
 

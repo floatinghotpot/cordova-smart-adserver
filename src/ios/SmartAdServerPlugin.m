@@ -199,8 +199,7 @@
  */
 //Called when your ad is ready to be displayed or is displayed if you already called [self.view addSubview:myBanner];
 - (void)adViewDidLoad:(SASAdView *)adView {
-    
-    NSLog(@"adViewDidLoad");
+    if(self.isTesting) NSLog(@"adViewDidLoad");
 
     if([adView isKindOfClass:[SASBannerView class]]) {
         if((! self.bannerVisible) && self.autoShowBanner) {
@@ -235,5 +234,53 @@
 
     }
 }
+
+- (void)adViewDidDisappear:(SASAdView *)adView {
+    if([adView isKindOfClass:[SASBannerView class]]) {
+        [self fireAdEvent:EVENT_AD_DISMISS withType:ADTYPE_BANNER];
+
+    } else if([adView isKindOfClass:[SASInterstitialView class]]) {
+        [self fireAdEvent:EVENT_AD_DISMISS withType:ADTYPE_INTERSTITIAL];
+
+        if(self.interstitial) {
+            [self __destroyInterstitial:self.interstitial];
+            self.interstitial = nil;
+        }
+
+    }
+}
+
+- (void)adViewWillPresentModalView:(SASAdView *)adView {
+    if([adView isKindOfClass:[SASBannerView class]]) {
+        [self fireAdEvent:EVENT_AD_PRESENT withType:ADTYPE_BANNER];
+
+    } else if([adView isKindOfClass:[SASInterstitialView class]]) {
+        [self fireAdEvent:EVENT_AD_PRESENT withType:ADTYPE_INTERSTITIAL];
+
+    }
+}
+
+- (void)adViewWillDismissModalView:(SASAdView *)adView {
+    if([adView isKindOfClass:[SASBannerView class]]) {
+        [self fireAdEvent:EVENT_AD_WILLDISMISS withType:ADTYPE_BANNER];
+
+    } else if([adView isKindOfClass:[SASInterstitialView class]]) {
+        [self fireAdEvent:EVENT_AD_WILLDISMISS withType:ADTYPE_INTERSTITIAL];
+
+    }
+}
+
+- (void)adView:(SASAdView *)adView willPerformActionWithExit:(BOOL)willExit {
+    if(willExit) {
+        if([adView isKindOfClass:[SASBannerView class]]) {
+            [self fireAdEvent:EVENT_AD_LEAVEAPP withType:ADTYPE_BANNER];
+
+        } else if([adView isKindOfClass:[SASInterstitialView class]]) {
+            [self fireAdEvent:EVENT_AD_LEAVEAPP withType:ADTYPE_INTERSTITIAL];
+
+        }
+    }
+}
+
 
 @end

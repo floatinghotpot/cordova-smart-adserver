@@ -3,7 +3,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	id="com.rjfun.cordova.smartadserver"
-	version="1.0.2">
+	version="1.0.3">
       
     <name>Smart Ad Server</name>
 	<description>Cordova/PhoneGap Plugin for Smart Ad Server</description>
@@ -45,6 +45,8 @@
         </config-file>
         <source-file src="src/android/SmartAdServerPlugin.java" target-dir="src/com/rjfun/cordova/smartadserver" />
         <source-file src="src/android/SmartAdServer-Android-SDK-5.0.4.jar" target-dir="libs" />
+        <source-file src="src/android/InMobi-4.5.2.jar" target-dir="libs" />
+        <source-file src="src/android/MMSDK.jar" target-dir="libs" />
      </platform>
 
     <!-- ios -->
@@ -69,9 +71,24 @@
          <header-file src="src/ios/headers/SASInterstitialView.h"/>
          <header-file src="src/ios/headers/SASMediationAd.h"/>
          <header-file src="src/ios/headers/SmartAdServerAd.h"/>
-
          <source-file src="src/ios/libSmartAdServer.a" framework="true"/>
          <resource-file src="src/ios/sas.bundle"/>
+
+         <header-file src="src/ios/InMobi/4.5.1/IMBanner.h"/>
+         <header-file src="src/ios/InMobi/4.5.1/IMBannerDelegate.h"/>
+         <header-file src="src/ios/InMobi/4.5.1/IMConstants.h"/>
+         <header-file src="src/ios/InMobi/4.5.1/IMError.h"/>
+         <header-file src="src/ios/InMobi/4.5.1/IMIncentivisedDelegate.h"/>
+         <header-file src="src/ios/InMobi/4.5.1/IMInterstitial.h"/>
+         <header-file src="src/ios/InMobi/4.5.1/IMInterstitialDelegate.h"/>
+         <header-file src="src/ios/InMobi/4.5.1/IMNative.h"/>
+         <header-file src="src/ios/InMobi/4.5.1/IMNativeDelegate.h"/>
+         <header-file src="src/ios/InMobi/4.5.1/InMobi.h"/>
+         <header-file src="src/ios/InMobi/4.5.1/InMobiAnalytics.h"/>
+         <source-file src="src/ios/InMobi/4.5.1/libInMobi-4.5.1.a" framework="true"/>
+
+        <framework src="src/ios/MillennialMedia/5.4.1/MillennialMedia.framework" custom="true"/>
+        <framework src="src/ios/MillennialMedia/5.4.1/SpeechKit.framework" custom="true"/>
 
         <framework src="AdSupport.framework" weak="true"/>
         <framework src="CoreGraphics.framework"/>

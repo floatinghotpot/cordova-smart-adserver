@@ -91,16 +91,23 @@
         <framework src="src/ios/MillennialMedia/5.4.1/SpeechKit.framework" custom="true"/>
 
         <framework src="AdSupport.framework" weak="true"/>
+        <framework src="AudioToolbox.framework"/>
+        <framework src="CFNetwork.Framework"/>
         <framework src="CoreGraphics.framework"/>
         <framework src="CoreLocation.framework"/>
         <framework src="CoreMotion.framework" weak="true"/>
+        <framework src="CoreTelephony.framework"/>
         <framework src="EventKit.framework"/>
         <framework src="EventKitUI.framework"/>
         <framework src="Foundation.framework"/>
         <framework src="MediaPlayer.framework"/>
+        <framework src="MesssageUI.framework"/>
         <framework src="QuartzCore.framework"/>
+        <framework src="Security.framework"/>
         <framework src="StoreKit.framework"/>
         <framework src="SystemConfiguration.framework"/>
         <framework src="UIKit.framework"/>
+        <framework src="libsqlite3.dylib"/>
+        <framework src="libz.dylib"/>
     </platform>
 </plugin>

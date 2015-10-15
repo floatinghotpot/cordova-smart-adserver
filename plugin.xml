@@ -18,14 +18,13 @@
 	</engines>
 
     <js-module src="www/SmartAdServer.js" name="SmartAdServer">
-        <clobbers target="window.SmartAdServer" />
+        <clobbers target="window.SmartAdServerPlugin" />
     </js-module>
 
-	<dependency id="com.rjfun.cordova.extension" />
+	<dependency id="cordova-plugin-extension" />
 	
     <!-- android -->
     <platform name="android">
-        <dependency id="com.google.playservices" url="https://github.com/floatinghotpot/google-play-services" commit="r19" />
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
 			<activity android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" 
 			    android:name="com.google.android.gms.ads.AdActivity"
@@ -45,6 +44,10 @@
         </config-file>
         <source-file src="src/android/SmartAdServerPlugin.java" target-dir="src/com/rjfun/cordova/smartadserver" />
         <source-file src="src/android/SmartAdServer-Android-SDK-5.0.4.jar" target-dir="libs" />
+        <!-- cordova CLI using gradle and it working well -->
+        <framework src="com.google.android.gms:play-services-ads:+" />
+        <!-- but unfortunately, build.phonegap.com, Intel XDK, and some other tools still use ant -->
+        <!-- dependency id="cordova-plugin-googleplayservices"/ -->
      </platform>
 
     <!-- ios -->

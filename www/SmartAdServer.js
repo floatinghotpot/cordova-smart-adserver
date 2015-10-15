@@ -107,12 +107,5 @@ SmartAdServer.prototype.showInterstitial = function(successCallback, failureCall
 
 //-------------------------------------------------------------------
 
-if(!window.plugins)
-    window.plugins = {};
-
-if (!window.plugins.SmartAdServer)
-    window.plugins.SmartAdServer = new SmartAdServer();
-
-if (typeof module != 'undefined' && module.exports)
-    module.exports = SmartAdServer;
-
+var smartAdServer = new SmartAdServer();
+module.exports = smartAdServer;

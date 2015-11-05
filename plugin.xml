@@ -20,7 +20,7 @@
     <js-module src="www/SmartAdServer.js" name="SmartAdServer">
         <clobbers target="window.SmartAdServer" />
     </js-module>
-
+ 
 	<dependency id="com.rjfun.cordova.extension" />
 	
     <!-- android -->

@@ -25,7 +25,8 @@
 	
     <!-- android -->
     <platform name="android">
-        <dependency id="com.google.playservices" url="https://github.com/floatinghotpot/google-play-services" commit="r19" />
+        <framework src="com.google.android.gms:play-services-ads:+" />
+
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
 			<activity android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" 
 			    android:name="com.google.android.gms.ads.AdActivity"

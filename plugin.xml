@@ -44,7 +44,7 @@
             </feature>
         </config-file>
         <source-file src="src/android/SmartAdServerPlugin.java" target-dir="src/com/rjfun/cordova/smartadserver" />
-        <source-file src="src/android/SmartAdServer-Android-SDK-5.0.4.jar" target-dir="libs" />
+        <source-file src="src/android/SmartAdServer-Android-SDK-6.3.jar" target-dir="libs" />
      </platform>
 
     <!-- ios -->
